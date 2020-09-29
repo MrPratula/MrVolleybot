@@ -1,5 +1,5 @@
-import json
 
+import json
 import mysql.connector
 
 from beans.User import User
@@ -28,28 +28,31 @@ def getUser(user_id):
     cursor = db.cursor(prepared=True)
     query = "SELECT * FROM members WHERE chat_id = ?"
 
-    cursor.execute(query, (str(user_id),))
+    try:
+        cursor.execute(query, (str(user_id),))
+    except:
+        print("query failed")
+        return
 
     result = cursor.fetchall()
 
     try:
-
         person = result[0]
 
         chat_id = person[0]
-        name = person[0]
-        surname = person[0]
-        nickname = person[0]
-        number = person[0]
-        bday = person[0]
-        delays = person[0]
-        absences = person[0]
-        fines0 = person[0]
-        fines1 = person[0]
-        active = person[0]
+        name = person[1]
+        surname = person[2]
+        nickname = person[3]
+        number = person[4]
+        bday = person[5]
+        delays = person[6]
+        absences = person[7]
+        fines0 = person[8]
+        fines1 = person[9]
+        active = person[10]
 
     except IndexError:
-        print("error")
+        print("can not create user bean")
         return
 
     return User(chat_id, name, surname, nickname, number, bday, delays, absences, fines0, fines1, active)
@@ -69,7 +72,44 @@ def getUserBday():
 
     people = []
     for person in result:
-
         people.append(User(surname=person[0], nickname=person[1], bday=person[2]))
+
+    return people
+
+
+# return a user with provided surname
+def getUserByFullName(name, surname):
+    db = connect()
+    cursor = db.cursor(prepared=True)
+    query = "SELECT * FROM members WHERE name = ? && surname = ?"
+
+    try:
+        cursor.execute(query, (str(name), str(surname)))
+    except:
+        print("query failed")
+        return
+
+    result = cursor.fetchall()
+
+    people = []
+    for person in result:
+        try:
+            chat_id = person[0]
+            name = person[1]
+            surname = person[2]
+            nickname = person[3]
+            number = person[4]
+            bday = person[5]
+            delays = person[6]
+            absences = person[7]
+            fines0 = person[8]
+            fines1 = person[9]
+            active = person[10]
+
+            user = User(chat_id, name, surname, nickname, number, bday, delays, absences, fines0, fines1, active)
+            people.append(user)
+
+        except IndexError:
+            print("can not create user bean")
 
     return people

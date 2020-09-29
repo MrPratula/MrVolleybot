@@ -3,7 +3,7 @@ from utils import text
 
 
 def start(update, context):
-    context.bot.sendMessage(text=text.start, chat_id=update.message.chat_id)
+    context.bot.send_message(text=text.start, chat_id=update.message.chat_id)
 
 
 def help(update, context):
@@ -12,11 +12,10 @@ def help(update, context):
 
     message = text.help + "\n/" + "\n/".join(command_dict)
 
-    context.bot.sendMessage(text=message, chat_id=update.message.chat_id)
+    context.bot.send_message(text=message, chat_id=update.message.chat_id)
 
 
 def test(update, context):
 
+    print("test")
 
-
-    return

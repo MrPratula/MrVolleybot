@@ -14,6 +14,13 @@ start = "Hello,\n" \
 
 help = "This is all I can do!"
 
+args_not_given = "Please tell me name and surname of person to ban"
+person_not_found = "{} {} is not in this group"
+can_not_ban = "Can not ban {} from chat={}"
+can_not_kick = "Can not kick {} from chat={}"
+can_not_unban = "Can not unban {} from chat={}"
+
+
 # Paste
 
 emptyList = "La lista paste è vuota!"

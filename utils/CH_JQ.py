@@ -1,10 +1,11 @@
-import paste.paste
-import manage.start
 
+from utils import times
 from telegram.ext import CommandHandler
 
+
+from paste import paste
+from manage import start, administration
 from day.checkDay import auto_checkBday
-from utils import times
 
 
 def init_command_handler(updater):
@@ -12,16 +13,22 @@ def init_command_handler(updater):
 
     # Intro
 
-    dispatcher.add_handler(CommandHandler('start', manage.start.start))
-    dispatcher.add_handler(CommandHandler('help', manage.start.help))
-    dispatcher.add_handler(CommandHandler('test', manage.start.test))
+    dispatcher.add_handler(CommandHandler('start', start.start))
+    dispatcher.add_handler(CommandHandler('help', start.help))
+    dispatcher.add_handler(CommandHandler('test', start.test))
+
+    # Management
+
+    dispatcher.add_handler(CommandHandler('ban', administration.ban))
+    dispatcher.add_handler(CommandHandler('kick', administration.kick))
+    dispatcher.add_handler(CommandHandler('unban', administration.unban))
 
     # Food stuff
 
-    dispatcher.add_handler(CommandHandler('paste', paste.paste.showList))
-    dispatcher.add_handler(CommandHandler('add', paste.paste.addPerson))
-    dispatcher.add_handler(CommandHandler('pop', paste.paste.pop))
-    dispatcher.add_handler(CommandHandler('remove', paste.paste.remove))
+    dispatcher.add_handler(CommandHandler('paste', paste.showList))
+    dispatcher.add_handler(CommandHandler('add', paste.addPerson))
+    dispatcher.add_handler(CommandHandler('pop', paste.pop))
+    dispatcher.add_handler(CommandHandler('remove', paste.remove))
 
 
 def init_job_queue(updater):
