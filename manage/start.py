@@ -1,8 +1,6 @@
 import json
 from utils import text
 
-from day import checkDay
-
 
 def start(update, context):
     context.bot.sendMessage(text=text.start, chat_id=update.message.chat_id)
@@ -19,6 +17,6 @@ def help(update, context):
 
 def test(update, context):
 
-    checkDay.checkBday(update, context)
+
 
     return
