@@ -12,7 +12,7 @@ def start(update, context):
 
 
 def help(update, context):
-    if check_permission(update.message.chat_id) > 100:
+    if check_permission(update.message.chat_id) > 2:
         return
 
     with open(help_file, "r") as f_command:

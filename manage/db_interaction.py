@@ -39,7 +39,7 @@ def register(update, context):
 
 
 def edit_nickname(update, context):
-    if check_permission(update.message.chat_id) > 1:
+    if check_permission(update.message.chat_id) > 0:
         return
     try:
         name = context.args[0]
@@ -59,7 +59,7 @@ def edit_nickname(update, context):
 
 
 def edit_number(update, context):
-    if check_permission(update.message.chat_id) > 1:
+    if check_permission(update.message.chat_id) > 0:
         return
 
     try:
