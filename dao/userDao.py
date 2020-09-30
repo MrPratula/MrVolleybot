@@ -169,3 +169,41 @@ def edit_user_active(name, surname):
 
     cursor.execute(query, data)
     db.commit()
+
+
+# get all members
+def getAll():
+    db = connect()
+    cursor = db.cursor(prepared=True)
+    query = "SELECT * FROM members"
+
+    try:
+        cursor.execute(query)
+    except:
+        print("query failed")
+        return
+
+    result = cursor.fetchall()
+
+    people = []
+    for person in result:
+        try:
+            chat_id = person[0]
+            name = person[1]
+            surname = person[2]
+            nickname = person[3]
+            number = person[4]
+            bday = person[5]
+            delays = person[6]
+            absences = person[7]
+            fines0 = person[8]
+            fines1 = person[9]
+            active = person[10]
+
+            user = User(chat_id, name, surname, nickname, number, bday, delays, absences, fines0, fines1, active)
+            people.append(user)
+
+        except IndexError:
+            print("can not create user bean")
+
+    return people

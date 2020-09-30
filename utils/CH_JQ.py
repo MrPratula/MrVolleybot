@@ -29,6 +29,7 @@ def init_command_handler(updater):
     dispatcher.add_handler(CommandHandler('nickname', db_interaction.edit_nickname))
     dispatcher.add_handler(CommandHandler('number', db_interaction.edit_number))
     dispatcher.add_handler(CommandHandler('active', db_interaction.change_active))
+    dispatcher.add_handler(CommandHandler('members', db_interaction.members))
 
     # Food stuff
 

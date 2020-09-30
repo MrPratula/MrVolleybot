@@ -87,3 +87,25 @@ def change_active(update, context):
 
     userDao.edit_user_active(name, surname)
     context.bot.send_message(chat_id=update.message.chat_id, text=text.active_updated)
+
+
+def members(update, context):
+
+    people = userDao.getAll()
+    message = ""
+
+    for person in people:
+        message = message \
+                  + str(person.chat_id) + " " \
+                  + person.name + " " \
+                  + person.surname + " " \
+                  + str(person.nickname) + " " \
+                  + str(person.number) + " " \
+                  + str(person.bday) + " "\
+                  + str(person.delays) + " "\
+                  + str(person.absence) + " "\
+                  + str(person.fines0) + " "\
+                  + str(person.fines1) + " " \
+                  + str(person.active) + "\n"
+
+    context.bot.send_message(chat_id=update.message.chat_id, text=message)
