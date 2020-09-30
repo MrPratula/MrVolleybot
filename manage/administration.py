@@ -2,10 +2,13 @@
 from utils import fastChat
 from utils import text
 from dao.userDao import getUserByFullName
+from manage.security import check_permission
 
 
 # kicked people can rejoin the group
 def kick(update, context):
+    if check_permission(update.message.chat_id) > 0:
+        return
 
     try:
         people = getUserByFullName(context.args[0], context.args[1])
@@ -32,6 +35,8 @@ def kick(update, context):
 
 # banned people can not join group
 def ban(update, context):
+    if check_permission(update.message.chat_id) > 0:
+        return
 
     try:
         people = getUserByFullName(context.args[0], context.args[1])
@@ -58,6 +63,8 @@ def ban(update, context):
 
 # unban people to let them rejoin group
 def unban(update, context):
+    if check_permission(update.message.chat_id) > 0:
+        return
 
     try:
         people = getUserByFullName(context.args[0], context.args[1])

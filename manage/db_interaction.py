@@ -3,9 +3,13 @@ import datetime
 from beans.User import User
 from utils import text
 from dao import userDao
+from manage.security import check_permission
 
 
 def register(update, context):
+    if check_permission(update.message.chat_id) > 0:
+        return
+
     try:
         chat_id = context.args[0]
         name = context.args[1]
@@ -35,6 +39,8 @@ def register(update, context):
 
 
 def edit_nickname(update, context):
+    if check_permission(update.message.chat_id) > 1:
+        return
     try:
         name = context.args[0]
         surname = context.args[1]
@@ -53,6 +59,9 @@ def edit_nickname(update, context):
 
 
 def edit_number(update, context):
+    if check_permission(update.message.chat_id) > 1:
+        return
+
     try:
         name = context.args[0]
         surname = context.args[1]
@@ -77,6 +86,9 @@ def edit_number(update, context):
 
 
 def change_active(update, context):
+    if check_permission(update.message.chat_id) > 0:
+        return
+
     try:
         name = context.args[0]
         surname = context.args[1]
@@ -90,8 +102,10 @@ def change_active(update, context):
 
 
 def members(update, context):
+    if check_permission(update.message.chat_id) > 2:
+        return
 
-    people = userDao.getAll()
+    people = userDao.get_all()
     message = ""
 
     for person in people:

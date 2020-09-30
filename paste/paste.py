@@ -4,11 +4,15 @@ import json
 
 from utils import text
 from utils.fastChat import getAVIS
+from manage.security import check_permission
 
 filePath = "files/listaPaste.json"
 
 
 def showList(update, context):
+    if check_permission(update.message.chat_id) > 2:
+        return
+
     with open(filePath, 'r') as f_paste:
         paste_dict = json.load(f_paste)
 
@@ -26,7 +30,12 @@ def showList(update, context):
 
 
 def addPerson(update, context, name=None):
+
     if name is None:
+
+        if check_permission(update.message.chat_id) > 1:
+            return
+
         try:
             sent_name = context.args[0]
         except IndexError:
@@ -54,6 +63,9 @@ def addPerson(update, context, name=None):
 
 
 def pop(update, context):
+    if check_permission(update.message.chat_id) > 1:
+        return
+
     with open(filePath, 'r+') as f_paste:
         paste_dict = json.load(f_paste)
         paste_dict.pop(0)
@@ -67,6 +79,9 @@ def pop(update, context):
 
 
 def remove(update, context):
+    if check_permission(update.message.chat_id) > 1:
+        return
+
     n = int(context.args[0])
 
     if n <= 1:

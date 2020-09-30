@@ -1,5 +1,6 @@
 import json
 from utils import text
+from manage.security import check_permission
 
 
 help_file = "public_files/commands.json"
@@ -11,6 +12,9 @@ def start(update, context):
 
 
 def help(update, context):
+    if check_permission(update.message.chat_id) > 100:
+        return
+
     with open(help_file, "r") as f_command:
         command_dict = json.load(f_command)
 
@@ -20,6 +24,4 @@ def help(update, context):
 
 
 def test(update, context):
-
     print("test")
-
