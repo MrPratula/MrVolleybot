@@ -74,3 +74,16 @@ def edit_number(update, context):
         context.bot.send_message(chat_id=update.message.chat_id, text=text.number_updated)
     elif result == 1:
         context.bot.send_message(chat_id=update.message.chat_id, text=text.number_update_failed)
+
+
+def change_active(update, context):
+    try:
+        name = context.args[0]
+        surname = context.args[1]
+
+    except IndexError:
+        context.bot.send_message(chat_id=update.message.chat_id, text=text.wrong_args_active)
+        return
+
+    userDao.edit_user_active(name, surname)
+    context.bot.send_message(chat_id=update.message.chat_id, text=text.active_updated)

@@ -24,9 +24,11 @@ def init_command_handler(updater):
     dispatcher.add_handler(CommandHandler('unban', administration.unban))
 
     # DB interactions
+
     dispatcher.add_handler(CommandHandler('register', db_interaction.register))
-    dispatcher.add_handler(CommandHandler('update_nickname', db_interaction.edit_nickname))
-    dispatcher.add_handler(CommandHandler('update_number', db_interaction.edit_number))
+    dispatcher.add_handler(CommandHandler('nickname', db_interaction.edit_nickname))
+    dispatcher.add_handler(CommandHandler('number', db_interaction.edit_number))
+    dispatcher.add_handler(CommandHandler('active', db_interaction.change_active))
 
     # Food stuff
 

@@ -41,6 +41,9 @@ wrong_range_number = "New number must be between 1 and 99.\n" \
 number_update_failed = "This number is already in use"
 number_updated = "Number updated"
 
+wrong_args_active = "Please write name surname"
+active_updated = "Active field has been changed"
+
 # Paste
 
 emptyList = "La lista paste è vuota!"

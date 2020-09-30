@@ -21,7 +21,9 @@ def checkBday(update, context):
             age = datetime.date.today().year - user.bday.year
 
             context.bot.send_message(chat_id=getAVIS(), text=happyBday.format(name, age))
-            addPerson(update, context, name=name)
+
+            if user.active == 1:
+                addPerson(update, context, name=name)
 
 
 def auto_checkBday(context):

@@ -61,7 +61,7 @@ def getUser(user_id):
 def getUserBday():
     db = connect()
     cursor = db.cursor(prepared=True)
-    query = "SELECT surname, nickname, bday " \
+    query = "SELECT surname, nickname, bday, active " \
             "FROM members " \
             "WHERE DATE_FORMAT(bday, '%m-%d') = DATE_FORMAT(NOW(), '%m-%d')"
 
@@ -71,7 +71,7 @@ def getUserBday():
 
     people = []
     for person in result:
-        people.append(User(surname=person[0], nickname=person[1], bday=person[2]))
+        people.append(User(surname=person[0], nickname=person[1], bday=person[2], active=person[3]))
 
     return people
 
@@ -158,3 +158,14 @@ def edit_user_number(name, surname, new_number):
         return 0
     except:
         return 1
+
+
+# edit user active
+def edit_user_active(name, surname):
+    db = connect()
+    cursor = db.cursor(prepared=True)
+    query = "UPDATE members SET active = NOT active WHERE name = %s && surname = %s"
+    data = (name, surname)
+
+    cursor.execute(query, data)
+    db.commit()
