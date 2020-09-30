@@ -2,12 +2,16 @@ import json
 from utils import text
 
 
+help_file = "public_files/commands.json"
+
+
 def start(update, context):
-    context.bot.send_message(text=text.start, chat_id=update.message.chat_id)
+    your_id = update.message.chat_id
+    context.bot.send_message(text=text.start.format(your_id), chat_id=update.message.chat_id)
 
 
 def help(update, context):
-    with open("manage/commands.json", "r") as f_command:
+    with open(help_file, "r") as f_command:
         command_dict = json.load(f_command)
 
     message = text.help + "\n/" + "\n/".join(command_dict)

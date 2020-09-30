@@ -1,4 +1,3 @@
-
 import json
 import mysql.connector
 
@@ -77,7 +76,7 @@ def getUserBday():
     return people
 
 
-# return a user with provided surname
+# return a user with provided name and surname
 def getUserByFullName(name, surname):
     db = connect()
     cursor = db.cursor(prepared=True)
@@ -113,3 +112,49 @@ def getUserByFullName(name, surname):
             print("can not create user bean")
 
     return people
+
+
+# get a user with chat, name, surname, bday and insert it into db
+def create_new_user(user):
+    db = connect()
+    cursor = db.cursor(prepared=True)
+    query = "INSERT INTO members (chat_id, name, surname, bday) VALUES (%s, %s, %s, %s)"
+
+    data = (user.chat_id, user.name, user.surname, user.bday)
+
+    try:
+        cursor.execute(query, data)
+        db.commit()
+        return 0
+    except mysql.connector.errors.IntegrityError:
+        return 1
+
+
+# edit user nickname
+def edit_user_nickname(name, surname, new_nickname):
+    db = connect()
+    cursor = db.cursor(prepared=True)
+    query = "UPDATE members SET nickname = %s WHERE name = %s && surname = %s"
+    data = (new_nickname, name, surname)
+
+    try:
+        cursor.execute(query, data)
+        db.commit()
+        return 0
+    except:
+        return 1
+
+
+# edit user number
+def edit_user_number(name, surname, new_number):
+    db = connect()
+    cursor = db.cursor(prepared=True)
+    query = "UPDATE members SET number = %s WHERE name = %s && surname = %s"
+    data = (new_number, name, surname)
+
+    try:
+        cursor.execute(query, data)
+        db.commit()
+        return 0
+    except:
+        return 1

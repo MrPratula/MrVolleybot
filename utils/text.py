@@ -10,6 +10,7 @@ keyError = "Can't get bot key!\n" \
 start = "Hello,\n" \
         "I am Mr VolleyBot and I manage AVIS Cernusco GP Car!\n" \
         "If you want to use my services please ask an admin to /register you!\n" \
+        "Your chat ID is {}\n"\
         "Have a nice day!"
 
 help = "This is all I can do!"
@@ -20,6 +21,25 @@ can_not_ban = "Can not ban {} from chat={}"
 can_not_kick = "Can not kick {} from chat={}"
 can_not_unban = "Can not unban {} from chat={}"
 
+# DB interactions
+
+wrong_args_new_user = "Please write chatId name surname yyyy-mm-dd of the new user.\n" \
+                    "To know user chat id ask him to use /start command"
+wrong_data_format = "The date of birth must be in this format yyyy-mm-dd"
+chat_id_already_exist = "Given chat id is already in use"
+insert_success = "New user has been created"
+
+wrong_args_nickname = "Please write name surname newNickname"
+nickname_update_failed = "Can not update this nickname. Data base got some error"
+nickname_updated = "Nickname updated!\n" \
+                   "Enjoy your beautiful new nickname"
+
+wrong_args_number = "Please write name surname newNumber.\n" \
+                    "To reset a number set it to 0"
+wrong_range_number = "New number must be between 1 and 99.\n" \
+                    "To reset a number set it to 0"
+number_update_failed = "This number is already in use"
+number_updated = "Number updated"
 
 # Paste
 
