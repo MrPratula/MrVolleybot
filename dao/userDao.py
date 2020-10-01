@@ -227,7 +227,7 @@ def get_id_active():
     for person in result:
         try:
             chat_id = person[0]
-            active = person[2]
+            active = person[1]
 
             user = User(chat_id=chat_id, active=active)
             people.append(user)
