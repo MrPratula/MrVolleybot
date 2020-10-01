@@ -15,6 +15,9 @@ start = "Hello,\n" \
 
 help = "This is all I can do!"
 
+unauthorized = "You are not authorized to do that.\n" \
+               "If you think you should be able to to that contact the admin!"
+
 args_not_given = "Please tell me name and surname of person to ban"
 person_not_found = "{} {} is not in this group"
 can_not_ban = "Can not ban {} from chat={}"

@@ -26,6 +26,5 @@ def checkBday(update, context):
                 addPerson(update, context, name=name)
                 
 
-
 def auto_checkBday(context):
     checkBday(None, context)

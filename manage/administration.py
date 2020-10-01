@@ -8,6 +8,7 @@ from manage.security import check_permission
 # kicked people can rejoin the group
 def kick(update, context):
     if check_permission(update.message.chat_id) > 0:
+        context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
 
     try:
@@ -36,6 +37,7 @@ def kick(update, context):
 # banned people can not join group
 def ban(update, context):
     if check_permission(update.message.chat_id) > 0:
+        context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
 
     try:
@@ -64,6 +66,7 @@ def ban(update, context):
 # unban people to let them rejoin group
 def unban(update, context):
     if check_permission(update.message.chat_id) > 0:
+        context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
 
     try:

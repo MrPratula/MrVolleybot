@@ -13,6 +13,7 @@ def start(update, context):
 
 def help(update, context):
     if check_permission(update.message.chat_id) > 2:
+        context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
 
     with open(help_file, "r") as f_command:

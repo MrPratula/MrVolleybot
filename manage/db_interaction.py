@@ -8,6 +8,7 @@ from manage.security import check_permission
 
 def register(update, context):
     if check_permission(update.message.chat_id) > 0:
+        context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
 
     try:
@@ -40,6 +41,7 @@ def register(update, context):
 
 def edit_nickname(update, context):
     if check_permission(update.message.chat_id) > 0:
+        context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
     try:
         name = context.args[0]
@@ -60,6 +62,7 @@ def edit_nickname(update, context):
 
 def edit_number(update, context):
     if check_permission(update.message.chat_id) > 0:
+        context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
 
     try:
@@ -87,6 +90,7 @@ def edit_number(update, context):
 
 def change_active(update, context):
     if check_permission(update.message.chat_id) > 0:
+        context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
 
     try:
@@ -103,6 +107,7 @@ def change_active(update, context):
 
 def members(update, context):
     if check_permission(update.message.chat_id) > 2:
+        context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
 
     people = userDao.get_all()
