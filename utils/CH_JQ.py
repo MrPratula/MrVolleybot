@@ -43,4 +43,4 @@ def init_job_queue(updater):
     job_queue = updater.job_queue
 
     # Bday stuff
-    job_queue.run_daily(auto_checkBday, times.test_time)
+    job_queue.run_daily(auto_checkBday, times.every_day)
