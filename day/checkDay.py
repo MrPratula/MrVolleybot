@@ -24,6 +24,7 @@ def checkBday(update, context):
 
             if user.active == 1:
                 addPerson(update, context, name=name)
+                
 
 
 def auto_checkBday(context):
