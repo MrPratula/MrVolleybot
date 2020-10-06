@@ -10,9 +10,13 @@ filePath = "files/listaPaste.json"
 
 
 def showList(update, context):
-    if check_permission(update.message.chat_id) > 2:
-        context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
-        return
+
+    try:
+        if check_permission(update.message.chat_id) > 2:
+            context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
+            return
+    except:
+        print("no user id, may be an automatic call?")
 
     with open(filePath, 'r') as f_paste:
         paste_dict = json.load(f_paste)
