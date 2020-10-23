@@ -12,7 +12,7 @@ filePath = "files/listaPaste.json"
 def showList(update, context):
 
     try:
-        if check_permission(update.message.chat_id) > 2:
+        if check_permission(update.message.from_user.id) > 2:
             context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
             return
     except:
@@ -38,7 +38,7 @@ def addPerson(update, context, name=None):
 
     if name is None:
 
-        if check_permission(update.message.chat_id) > 1:
+        if check_permission(update.message.from_user.id) > 1:
             context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
             return
 
@@ -69,7 +69,7 @@ def addPerson(update, context, name=None):
 
 
 def pop(update, context):
-    if check_permission(update.message.chat_id) > 1:
+    if check_permission(update.message.from_user.id) > 1:
         context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
 
@@ -86,7 +86,7 @@ def pop(update, context):
 
 
 def remove(update, context):
-    if check_permission(update.message.chat_id) > 1:
+    if check_permission(update.message.from_user.id) > 1:
         context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
 
