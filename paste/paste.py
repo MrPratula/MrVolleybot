@@ -75,10 +75,16 @@ def pop(update, context):
 
     with open(filePath, 'r+') as f_paste:
         paste_dict = json.load(f_paste)
-        paste_dict.pop(0)
-        f_paste.seek(0)
-        json.dump(paste_dict, f_paste, indent=4)
-        f_paste.truncate()
+
+        try:
+            paste_dict.pop(0)
+            f_paste.seek(0)
+            json.dump(paste_dict, f_paste, indent=4)
+            f_paste.truncate()
+
+        except:
+            context.bot.send_message(chat_id=update.message.chat_id, text=text.emptyList)
+            return
 
     context.bot.send_message(chat_id=update.message.chat_id, text=text.listUpdated)
 
