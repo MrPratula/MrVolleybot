@@ -1,9 +1,7 @@
-import json
 from utils import text
+from dao.commandDao import getCommands
+from dao.commandDao import getCommandsFull
 from manage.security import check_permission
-
-
-help_file = "public_files/commands.json"
 
 
 def start(update, context):
@@ -16,10 +14,27 @@ def help(update, context):
         context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
 
-    with open(help_file, "r") as f_command:
-        command_dict = json.load(f_command)
+    commands = getCommands()
+    message = text.help + '\n'
+    for command in commands:
+        message = message + '\n/' + command.command
 
-    message = text.help + "\n/" + "\n/".join(command_dict)
+    context.bot.send_message(text=message, chat_id=update.message.chat_id)
+
+
+def man(update, context):
+    if check_permission(update.message.from_user.id) > 2:
+        context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
+        return
+
+    commands = getCommandsFull()
+    message = text.man + '\n'
+
+    for command in commands:
+        print(command.command, command.args, command.description)
+        message = message + '\n\n/' + \
+                  command.command + ' ' + command.args + '\n' + \
+                  command.description.capitalize() + ';'
 
     context.bot.send_message(text=message, chat_id=update.message.chat_id)
 

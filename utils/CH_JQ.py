@@ -15,6 +15,7 @@ def init_command_handler(updater):
 
     dispatcher.add_handler(CommandHandler('start', start.start))
     dispatcher.add_handler(CommandHandler('help', start.help))
+    dispatcher.add_handler(CommandHandler('man', start.man))
     dispatcher.add_handler(CommandHandler('test', start.test))
 
     # Management

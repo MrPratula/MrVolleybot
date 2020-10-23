@@ -13,7 +13,9 @@ start = "Hello,\n" \
         "Your chat ID is {}\n"\
         "Have a nice day!"
 
-help = "This is all I can do!"
+help = "Those are all the commands I can respond to.\n" \
+       "For a more accurate description use /man"
+man = "Guide for all MrVolleybot's commands:"
 
 unauthorized = "You are not authorized to do that.\n" \
                "If you think you should be able to to that contact the admin!"
