@@ -4,12 +4,14 @@ from dao.userDao import *
 from utils.text import happyBday
 from paste.paste import addPerson
 from utils.fastChat import getAVIS
-
+from utils.fastChat import getPRADA
 
 def checkBday(update, context):
     users = getUserBday()
 
     if users is not None:
+
+        context.bot.send_message(chat_id=getPRADA(), text="someone is happy")
 
         for user in users:
 
@@ -25,6 +27,9 @@ def checkBday(update, context):
             if user.active == 1:
                 addPerson(update, context, name=name)
                 
+    else:
+        context.bot.send_message(chat_id=getPRADA(), text="nobody is happy")
 
 def auto_checkBday(context):
     checkBday(None, context)
+     
