@@ -10,7 +10,7 @@ from utils.fastChat import getPRADA
 def checkBday(update, context):
     users = getUserBday()
 
-    if not users:
+    if len(users) != 0:
 
         context.bot.send_message(chat_id=getPRADA(), text="someone is happy")
 
@@ -27,7 +27,7 @@ def checkBday(update, context):
 
             if user.active == 1:
                 addPerson(update, context, name=name)
-                
+
     else:
         context.bot.send_message(chat_id=getPRADA(), text="nobody is happy")
 
