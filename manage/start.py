@@ -2,7 +2,6 @@ from utils import text
 from dao.commandDao import getCommands
 from dao.commandDao import getCommandsFull
 from manage.security import check_permission
-from day.checkDay import checkBday
 
 
 def start(update, context):
@@ -42,5 +41,3 @@ def man(update, context):
 
 def test(update, context):
     print("test")
-
-    checkBday(None, context)
