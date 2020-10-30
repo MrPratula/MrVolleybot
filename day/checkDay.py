@@ -6,10 +6,11 @@ from paste.paste import addPerson
 from utils.fastChat import getAVIS
 from utils.fastChat import getPRADA
 
+
 def checkBday(update, context):
     users = getUserBday()
 
-    if users is not None:
+    if not users:
 
         context.bot.send_message(chat_id=getPRADA(), text="someone is happy")
 
@@ -30,6 +31,6 @@ def checkBday(update, context):
     else:
         context.bot.send_message(chat_id=getPRADA(), text="nobody is happy")
 
+
 def auto_checkBday(context):
     checkBday(None, context)
-     
