@@ -4,9 +4,11 @@ from beans.User import User
 from utils import text
 from dao import userDao
 from manage.security import check_permission
+from manage.log import save_command
 
 
 def register(update, context):
+    save_command(update, "register")
     if check_permission(update.message.chat_id) > 0:
         context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
@@ -40,6 +42,7 @@ def register(update, context):
 
 
 def edit_nickname(update, context):
+    save_command(update, "nickname")
     if check_permission(update.message.chat_id) > 0:
         context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
@@ -61,6 +64,7 @@ def edit_nickname(update, context):
 
 
 def edit_number(update, context):
+    save_command(update, "number")
     if check_permission(update.message.chat_id) > 0:
         context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
@@ -89,6 +93,7 @@ def edit_number(update, context):
 
 
 def change_active(update, context):
+    save_command(update, "active")
     if check_permission(update.message.chat_id) > 0:
         context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
@@ -106,6 +111,7 @@ def change_active(update, context):
 
 
 def members(update, context):
+    save_command(update, "members")
     if check_permission(update.message.chat_id) > 2:
         context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
@@ -120,10 +126,10 @@ def members(update, context):
                   + person.surname + " " \
                   + str(person.nickname) + " " \
                   + str(person.number) + " " \
-                  + str(person.bday) + " "\
-                  + str(person.delays) + " "\
-                  + str(person.absence) + " "\
-                  + str(person.fines0) + " "\
+                  + str(person.bday) + " " \
+                  + str(person.delays) + " " \
+                  + str(person.absence) + " " \
+                  + str(person.fines0) + " " \
                   + str(person.fines1) + " " \
                   + str(person.active) + "\n"
 

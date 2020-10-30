@@ -5,6 +5,7 @@ import json
 from utils import text
 from utils.fastChat import getAVIS
 from manage.security import check_permission
+from manage.log import save_command
 
 filePath = "files/listaPaste.json"
 
@@ -12,6 +13,7 @@ filePath = "files/listaPaste.json"
 def showList(update, context):
 
     try:
+        save_command(update, "paste")
         if check_permission(update.message.from_user.id) > 2:
             context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
             return
@@ -37,6 +39,7 @@ def showList(update, context):
 def addPerson(update, context, name=None):
 
     if name is None:
+        save_command(update, "add")
 
         if check_permission(update.message.from_user.id) > 1:
             context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
@@ -69,6 +72,8 @@ def addPerson(update, context, name=None):
 
 
 def pop(update, context):
+    save_command(update, "pop")
+
     if check_permission(update.message.from_user.id) > 1:
         context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return
@@ -92,6 +97,8 @@ def pop(update, context):
 
 
 def remove(update, context):
+    save_command(update, "remove")
+
     if check_permission(update.message.from_user.id) > 1:
         context.bot.send_message(text=text.unauthorized, chat_id=update.message.chat_id)
         return

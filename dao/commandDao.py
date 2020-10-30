@@ -42,7 +42,6 @@ def getCommands():
         except:
             print("can not create command bean")
 
-    print(commands)
     commands.sort(key=lambda f: f.number)
     return commands
 
@@ -80,5 +79,4 @@ def getCommandsFull():
         except:
             print("can not create command bean")
 
-    print(commands)
     return commands

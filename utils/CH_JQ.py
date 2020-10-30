@@ -1,11 +1,11 @@
 
 from utils import times
-from telegram.ext import CommandHandler
-
+from telegram.ext import CommandHandler, MessageHandler, Filters
 
 from paste import paste
 from manage import start, administration, db_interaction
 from day.checkDay import auto_checkBday
+from manage.log import save_text
 
 
 def init_command_handler(updater):
@@ -13,6 +13,7 @@ def init_command_handler(updater):
 
     # Intro
 
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, save_text))
     dispatcher.add_handler(CommandHandler('start', start.start))
     dispatcher.add_handler(CommandHandler('help', start.help))
     dispatcher.add_handler(CommandHandler('man', start.man))
