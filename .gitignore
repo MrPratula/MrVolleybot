@@ -1,6 +1,7 @@
 
 files/**
 venv/**
+__pycache__/**
 
 .idea/**
 bot/__pycache__/**
