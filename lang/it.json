@@ -1,0 +1,26 @@
+{
+    "start_yes": "Bentornato {},\nusa il comando /menu per usare le mie funzionalità",
+
+    "unauthorized": "Sembra che tu non sia un utente registrato. Chiedi all'amministratore di registrarti per poter usare i miei servizi",
+
+    "menu_init": "Ciao {}, cosa vuoi fare?",
+
+    "paste_show": "\uD83C\uDF56   PASTE   \uD83C\uDF56\n\n{}",
+    "paste_no_name": "Scrivi la persona da aggiungere dopo il comando, ad esempio così:\n/add MrVolleybot",
+    "paste_add": "Il caro {} è stato aggiunto alla lista paste",
+    "paste_add_choice": "Chi vuoi aggiungere in lista paste?",
+    "paste_none": "La lista paste non è stata modificata",
+    "paste_remove_choice": "Chi vuoi rimovere dalla lista paste?",
+    "paste_remove": "{} è stato rimosso dalla lista paste",
+
+    "game_changed": "⚠   ATTENZIONE   ⚠\n",
+    "game_not_changed": "Il calendario non è cambiato",
+    "game_add": "\uD83D\uDFE2 {} contro {} è stata AGGIUNTA",
+    "game_remove": "\uD83D\uDD34 {} contro {} è stata CANCELLATA",
+    "game_remaining": "<b>La prossima partita è:</b>\n{}\n\n<b>Le prossime partite saranno:</b>\n{}",
+
+    "workout_start": "Allenamento di oggi {}!",
+    "workout_progress": "Allenamento di oggi {}!\n\nRitardo:\n{}\n\nAssenti:\n{}",
+    "workout_end": "Allenamento del {} ci si allena in {}.\nRitardo: {}\nAssenti: {}"
+
+}

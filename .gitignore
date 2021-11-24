@@ -1,0 +1,9 @@
+
+files/**
+venv/**
+
+.idea/**
+bot/__pycache__/**
+lang/__pycache__/**
+utils/__pycache__/**
+dao/__pycache__/**
