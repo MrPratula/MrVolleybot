@@ -63,7 +63,10 @@ def get_avis_subscribers():
         print("can not get avis subscribers id")
         return None
 
-    return result[0]
+    if result:
+        return result[0]
+    else:
+        return []
 
 
 def get_user_nick(person_id):
