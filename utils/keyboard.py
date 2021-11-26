@@ -41,3 +41,32 @@ def keyboard_late():
                 [InlineKeyboardButton("Termina", callback_data="workout_end")]]
 
     return keyboard
+
+
+# arg = abs | del
+# people = [[mario, true], [rossi, false]]
+def keyboard_active(people, arg):
+
+    keyboard = []
+
+    for person in people:
+
+        data = f"workout_{arg}_{person[0]}"
+
+        if keyboard == [] or len(keyboard[len(keyboard) - 1]) == 2:
+
+            if person[1]:
+                keyboard.append([InlineKeyboardButton(person[0] + "   🔴", callback_data=data)])
+            else:
+                keyboard.append([InlineKeyboardButton(person[0] + "   🟢", callback_data=data)])
+
+        else:
+
+            if person[1]:
+                keyboard[len(keyboard) - 1].append(InlineKeyboardButton(person[0] + "   🔴", callback_data=data))
+            else:
+                keyboard[len(keyboard) - 1].append(InlineKeyboardButton(person[0] + "   🟢", callback_data=data))
+
+    keyboard.append([InlineKeyboardButton("🔙   INDIETRO   🔙", callback_data="workout_start")])
+
+    return keyboard

@@ -3,26 +3,7 @@ import datetime
 from utils.db import connect
 
 
-def add_delay(person_id):
 
-    db = connect()
-    cursor = db.cursor(prepared=True)
-
-    query = "INSERT INTO workouts_2021_2022 (date, person, delay) VALUES (%s, %s, NOT delay)"
-    val = (datetime.date.today(), person_id)
-
-    try:
-        cursor.execute(query, val)
-        db.commit()
-    except:
-
-        query = "UPDATE workouts_2021_2022 SET delay = not delay WHERE date = %s AND person = %s"
-
-        try:
-            cursor.execute(query, val)
-            db.commit()
-        except:
-            print("can not change person delay")
 
 
 def add_absence(person_id):

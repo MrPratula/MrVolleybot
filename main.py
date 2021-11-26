@@ -6,7 +6,8 @@ from bot.menu import menu
 from bot.start import start
 from bot.paste import paste_show_c, paste_show_b, paste_add_c, paste_members_b, paste_add_b, paste_remove_b
 from bot.games import update_avis_games, avis_games
-from bot.workout import workout_c, workout_b, delay_button, absent_button, terminate_button, workout_count
+from bot.workout import workout_c, workout_b, delay_button, absent_button, terminate_button, person_absent_button, \
+                        person_delay_button
 
 from utils.get_from_config import get_key
 
@@ -40,8 +41,9 @@ if __name__ == '__main__':
     dispatcher.add_handler(CallbackQueryHandler(workout_b, pattern="workout_start"))
     dispatcher.add_handler(CallbackQueryHandler(delay_button, pattern="workout_delay"))
     dispatcher.add_handler(CallbackQueryHandler(absent_button, pattern="workout_absent"))
+    dispatcher.add_handler(CallbackQueryHandler(person_absent_button, pattern="^workout_abs_.*$"))
+    dispatcher.add_handler(CallbackQueryHandler(person_delay_button, pattern="^workout_del_.*$"))
     dispatcher.add_handler(CallbackQueryHandler(terminate_button, pattern="workout_end"))
-    dispatcher.add_handler(CallbackQueryHandler(workout_count, pattern="workout_count"))
 
     updater.start_polling()
 

@@ -19,8 +19,8 @@
     "game_remove": "\uD83D\uDD34 {} contro {} è stata CANCELLATA",
     "game_remaining": "<b>La prossima partita è:</b>\n{}\n\n<b>Le prossime partite saranno:</b>\n{}",
 
-    "workout_start": "Allenamento di oggi {}!",
-    "workout_progress": "Allenamento di oggi {}!\n\nRitardo:\n{}\n\nAssenti:\n{}",
-    "workout_end": "Allenamento del {} ci si allena in {}.\nRitardo: {}\nAssenti: {}"
+    "workout_main": "Allenamento del {} ci si allena in {}.",
+    "workout_absent": "\n\nAssenti:\n",
+    "workout_delay": "\n\nRitardo:\n"
 
 }
