@@ -1,7 +1,7 @@
 {
     "start_yes": "Bentornato {},\nusa il comando /menu per usare le mie funzionalità",
 
-    "unauthorized": "Sembra che tu non sia un utente registrato. Chiedi all'amministratore di registrarti per poter usare i miei servizi",
+    "unauthorized": "Benvenuto. Per registrarti usa il comando /register.\nSolo gli utenti registrati possono interagire con me",
 
     "menu_init": "Ciao {}, cosa vuoi fare?",
 
@@ -21,6 +21,23 @@
 
     "workout_main": "Allenamento del {} ci si allena in {}.",
     "workout_absent": "\n\nAssenti:\n",
-    "workout_delay": "\n\nRitardo:\n"
+    "workout_delay": "\n\nRitardo:\n",
+
+    "register_start": "Stai per iniziare la procedura di registrazione. Ti chiederò un po' di informazioni. Scrivi /cancel per interrompere la procedura.\nPer cominciare, qual è il tuo nome?",
+    "register_cancel": "La tua registrazione è stata annullata. Per ricominciare usa /register",
+
+    "register_name": "Qual è il tuo cognome?",
+    "register_surname": "Come ti chiamano gli amici?\nQuesto sarà il tuo soprannome per il resto dei tuoi giorni, quindi sceglilo bene!",
+    "register_nickname": "Adesso scrivimi la tua data di nascita nel seguente formato: GG-MM-AAAA.\nAd esempio, se sei nato il 6 gennaio del 98 scrivi 06-01-1998 o 6-1-1998.",
+    "register_bad_bday": "Non riesco a leggere la tua data di nascita.\nScrivimela nel seguente formato: GG-MM-AAAA\nAd esempio, se sei nato il 6 gennaio del 98 scrivi 06-01-1998 o 6-1-1998.",
+    "register_placeholder": "Inserisci si o no",
+    "register_bday": "Ti stai registrando come giocatore di AVIS Cernusco?",
+    "register_active_fail": "Scrivi solo si o no oppure premi un tasto.\nTi stai registrando come giocatore di AVIS Cernusco?",
+    "register_active": "Vuoi ricevere gli aggiornamenti sulle partite di AVIS Cernusco? Potrai modificare questa scelta in seguito",
+    "register_sub_avis_fail": "Scrivi solo si o no oppure premi un tasto.\nVuoi ricevere gli aggiornamenti sulle partite di AVIS Cernusco?",
+    "register_sub_avis": "Vuoi ricevere gli aggiornamenti sulle partite in casa della serie A? Potrai modificare questa scelta in seguito",
+    "register_sub_a_fail": "Scrivi solo si o no oppure premi un tasto.\nVuoi ricevere gli aggiornamenti sulle partite in casa della serie A?",
+    "register_sub_a": "La tua richiesta di registrazione è stata presa in carico. Quando la tua registrazione sarà completata ti informerò",
+    "register_admin": "Un nuovo utente ha richiesto di registrarsi:\nchat_id = <code>{}</code>\nNome = {}\nCognome = {}\nNickname = {}\nBDay = <code>{}</code>\nAttivo = {}\nSub avis = {}\nSub monza = {}"
 
 }

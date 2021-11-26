@@ -9,6 +9,8 @@ from bot.games import update_avis_games, avis_games
 from bot.workout import workout_c, workout_b, delay_button, absent_button, terminate_button, person_absent_button, \
                         person_delay_button
 
+from utils.conversation_handler import register_handler
+
 from utils.get_from_config import get_key
 
 
@@ -44,6 +46,9 @@ if __name__ == '__main__':
     dispatcher.add_handler(CallbackQueryHandler(person_absent_button, pattern="^workout_abs_.*$"))
     dispatcher.add_handler(CallbackQueryHandler(person_delay_button, pattern="^workout_del_.*$"))
     dispatcher.add_handler(CallbackQueryHandler(terminate_button, pattern="workout_end"))
+
+    # register
+    dispatcher.add_handler(register_handler)
 
     updater.start_polling()
 

@@ -1,3 +1,4 @@
+import traceback
 
 from utils.db import connect
 
@@ -105,3 +106,21 @@ def how_many():
         return None
 
     return int(result[0][0])
+
+
+def get_admin():
+
+    db = connect()
+    cursor = db.cursor(prepared=True)
+
+    query = "SELECT chat_id FROM users WHERE admin = %s"
+
+    try:
+        cursor.execute(query, (True,))
+        result = cursor.fetchall()
+    except Exception:
+        print("get_admin() had a problem")
+        print(traceback.format_exc())
+        return []
+
+    return result[0]

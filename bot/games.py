@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 from utils.get_from_config import get_avis_link, get_team_name
 from dao.game_dao import insert_game, del_game, get_all_games
-from utils.notify_subscribers import notify_game_change_avis
+from utils.notify import notify_game_change_avis
 from utils.lang import text
 
 

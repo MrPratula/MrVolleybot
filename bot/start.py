@@ -10,5 +10,6 @@ def start(update, context):
         message = text("start_yes").format(name)
 
     else:
-        message = text("unauthorized")
+        message = text("unauthorized").format(update.message.from_user.id)
+
     update.message.reply_text(message)
