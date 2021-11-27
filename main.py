@@ -8,6 +8,7 @@ from bot.paste import paste_show_c, paste_show_b, paste_add_c, paste_members_b, 
 from bot.games import update_avis_games, avis_games
 from bot.workout import workout_c, workout_b, delay_button, absent_button, terminate_button, person_absent_button, \
                         person_delay_button
+from bot.edit import edit_b, edit_bool, edit_number, edit_answer_bool, edit_answer_number
 
 from utils.conversation_handler import register_handler
 
@@ -46,6 +47,15 @@ if __name__ == '__main__':
     dispatcher.add_handler(CallbackQueryHandler(person_absent_button, pattern="^workout_abs_.*$"))
     dispatcher.add_handler(CallbackQueryHandler(person_delay_button, pattern="^workout_del_.*$"))
     dispatcher.add_handler(CallbackQueryHandler(terminate_button, pattern="workout_end"))
+
+    dispatcher.add_handler(CallbackQueryHandler(edit_b, pattern="edit_main"))
+    dispatcher.add_handler(CallbackQueryHandler(edit_bool, pattern="^edit_bool_.*$"))
+    dispatcher.add_handler(CallbackQueryHandler(edit_answer_bool, pattern="^edit_ans_.*$"))
+    dispatcher.add_handler(CallbackQueryHandler(edit_number, pattern="edit_number"))
+    dispatcher.add_handler(CallbackQueryHandler(edit_answer_number, pattern="edit_set_num_.*$"))
+
+
+
 
     # register
     dispatcher.add_handler(register_handler)

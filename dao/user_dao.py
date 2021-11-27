@@ -82,9 +82,10 @@ def get_user_nick(person_id):
         cursor.execute(query, (person_id,))
         result = cursor.fetchall()
 
-    except:
-        print("can not get user nick")
-        return None
+    except Exception:
+        print("get_user_nick() had a problem")
+        print(traceback.format_exc())
+        return "NO NAME"
 
     return str(result[0][0])
 

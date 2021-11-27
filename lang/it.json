@@ -38,6 +38,18 @@
     "register_sub_avis": "Vuoi ricevere gli aggiornamenti sulle partite in casa della serie A? Potrai modificare questa scelta in seguito",
     "register_sub_a_fail": "Scrivi solo si o no oppure premi un tasto.\nVuoi ricevere gli aggiornamenti sulle partite in casa della serie A?",
     "register_sub_a": "La tua richiesta di registrazione è stata presa in carico. Quando la tua registrazione sarà completata ti informerò",
-    "register_admin": "Un nuovo utente ha richiesto di registrarsi:\nchat_id = <code>{}</code>\nNome = {}\nCognome = {}\nNickname = {}\nBDay = <code>{}</code>\nAttivo = {}\nSub avis = {}\nSub monza = {}"
+    "register_admin": "Un nuovo utente ha richiesto di registrarsi:\nchat_id = <code>{}</code>\nNome = {}\nCognome = {}\nNickname = {}\nBDay = <code>{}</code>\nAttivo = {}\nSub avis = {}\nSub monza = {}",
 
+    "edit_main": "Ciao {}, cosa vuoi modificare?",
+    "edit_active": "Sei un giocatore di AVIS Cernusco? SI solo se sei attualmente iscritto alla squadra come giocatore per quest'anno",
+    "edit_avis_sub": "Vuoi ricevere gli aggiornamenti sulle partite di AVIS Cernusco?",
+    "edit_monza_sub": "Vuoi ricevere gli aggiornamenti delle partite in casa di serie A maschile e femminile di Monza?",
+    "edit_active_end_true": "Adesso sei un membro attivo di AVIS Cernusco",
+    "edit_active_end_false": "Adesso non sei un membro attivo di AVIS Cernusco",
+    "edit_avis_sub_end_true": "Adesso sei iscritto agli aggiornamenti delle partite di AVIS Cernusco",
+    "edit_avis_sub_end_false": "Adesso non sei iscritto agli aggiornamenti delle partite di AVIS Cernusco",
+    "edit_monza_sub_end_true": "Adesso sei iscritto agli aggiornamenti delle partite in casa della serie A",
+    "edit_monza_sub_end_false": "Adesso non sei iscritto agli aggiornamenti delle partite in casa della serie A",
+    "edit_number": "Qual è il tuo numero di maglia di quest'anno?",
+    "edit_number_end": "Il tuo numero di maglia è stato aggiornato! Adesso sei il #{}"
 }

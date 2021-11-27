@@ -4,14 +4,14 @@ from telegram import InlineKeyboardButton
 
 def keyboard_menu():
 
-    keyboard = [[InlineKeyboardButton("Paste", callback_data="paste_show"),
-                 InlineKeyboardButton("Allenamento", callback_data="workout_start")],
+    keyboard = [[InlineKeyboardButton("Paste 🍖", callback_data="paste_show"),
+                 InlineKeyboardButton("Allenamento 💪", callback_data="workout_start")],
 
-                [InlineKeyboardButton("Rimuovi Paste", callback_data="paste_members_remove"),
-                 InlineKeyboardButton("Partita", callback_data="game")],
+                [InlineKeyboardButton("Rimuovi Paste 📤", callback_data="paste_members_remove"),
+                 InlineKeyboardButton("Aggiungi Paste 📥", callback_data="paste_members_add")],
 
-                [InlineKeyboardButton("Aggiungi Paste", callback_data="paste_members_add"),
-                 InlineKeyboardButton("Multe", callback_data="workout_count")]
+                [InlineKeyboardButton("Partita 🆚", callback_data="game"),
+                 InlineKeyboardButton("Modifica ⚙", callback_data="edit_main")]
                 ]
 
     return keyboard
@@ -35,10 +35,10 @@ def array_to_keyboard(array, callback_data):
 
 def keyboard_late():
 
-    keyboard = [[InlineKeyboardButton("Ritardo", callback_data="workout_delay"),
-                 InlineKeyboardButton("Assente", callback_data="workout_absent")],
+    keyboard = [[InlineKeyboardButton("Ritardo ⏱", callback_data="workout_delay"),
+                 InlineKeyboardButton("Assente ❌", callback_data="workout_absent")],
 
-                [InlineKeyboardButton("Termina", callback_data="workout_end")]]
+                [InlineKeyboardButton("🟢 Termina 🟢", callback_data="workout_end")]]
 
     return keyboard
 
@@ -68,5 +68,43 @@ def keyboard_active(people, arg):
                 keyboard[len(keyboard) - 1].append(InlineKeyboardButton(person[0] + "   🟢", callback_data=data))
 
     keyboard.append([InlineKeyboardButton("🔙   INDIETRO   🔙", callback_data="workout_start")])
+
+    return keyboard
+
+
+def keyboard_edit():
+
+    keyboard = [[InlineKeyboardButton("Numero #️⃣", callback_data="edit_number"),
+                 InlineKeyboardButton("Attivo ☑", callback_data="edit_bool_active")],
+
+                [InlineKeyboardButton("AVIS sub 🏆", callback_data="edit_bool_avis_sub"),
+                 InlineKeyboardButton("Monza sub 🏅", callback_data="edit_bool_monza_sub")]]
+
+    return keyboard
+
+
+def keyboard_bool():
+
+    keyboard = [[InlineKeyboardButton("SI 🟢", callback_data="edit_ans_true"),
+                 InlineKeyboardButton("NO 🔴", callback_data="edit_ans_false")]]
+
+    return keyboard
+
+
+def keyboard_numbers():
+
+    keyboard = []
+
+    for n in range(31):
+
+        if n == 0:
+            continue
+
+        data = f"edit_set_num_{n}"
+
+        if keyboard == [] or len(keyboard[len(keyboard) - 1]) == 5:
+            keyboard.append([InlineKeyboardButton(f"{n}", callback_data=data)])
+        else:
+            keyboard[len(keyboard) - 1].append(InlineKeyboardButton(f"{n}", callback_data=data))
 
     return keyboard
