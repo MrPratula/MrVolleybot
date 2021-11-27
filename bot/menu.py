@@ -10,7 +10,8 @@ from utils.lang import text
 def menu(update, context):
 
     if not user_exist(update.message.from_user.id):
-        update.message.reply_text("unauthorized")
+        message = text("unauthorized")
+        update.message.reply_text(message)
         return
 
     keyboard = keyboard_menu()

@@ -125,3 +125,21 @@ def get_admin():
         return []
 
     return result[0]
+
+
+def is_admin(user_id):
+
+    db = connect()
+    cursor = db.cursor(prepared=True)
+
+    query = "SELECT admin FROM users WHERE chat_id = %s"
+
+    try:
+        cursor.execute(query, (user_id,))
+        result = cursor.fetchall()
+    except Exception:
+        print("is_admin() had a problem")
+        print(traceback.format_exc())
+        return False
+
+    return result[0][0]

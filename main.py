@@ -9,6 +9,7 @@ from bot.games import update_avis_games, avis_games
 from bot.workout import workout_c, workout_b, delay_button, absent_button, terminate_button, person_absent_button, \
                         person_delay_button
 from bot.edit import edit_b, edit_bool, edit_number, edit_answer_bool, edit_answer_number
+from bot.new_user import new, my_id
 
 from utils.conversation_handler import register_handler
 
@@ -32,6 +33,9 @@ if __name__ == '__main__':
     dispatcher.add_handler(CommandHandler('up_avis', update_avis_games))
     dispatcher.add_handler(CommandHandler('game', avis_games))
     dispatcher.add_handler(CommandHandler('late', workout_c))
+    dispatcher.add_handler(CommandHandler('new', new))
+    dispatcher.add_handler(CommandHandler('id', my_id))
+
 
     #   BUTTONS
     dispatcher.add_handler(CallbackQueryHandler(paste_show_b, pattern="paste_show"))

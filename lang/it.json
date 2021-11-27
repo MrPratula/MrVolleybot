@@ -2,6 +2,7 @@
     "start_yes": "Bentornato {},\nusa il comando /menu per usare le mie funzionalità",
 
     "unauthorized": "Benvenuto. Per registrarti usa il comando /register.\nSolo gli utenti registrati possono interagire con me",
+    "unauthorized_2": "Mi dispiace, solo un admin può eseguire questa operazione",
 
     "menu_init": "Ciao {}, cosa vuoi fare?",
 
@@ -51,5 +52,11 @@
     "edit_monza_sub_end_true": "Adesso sei iscritto agli aggiornamenti delle partite in casa della serie A",
     "edit_monza_sub_end_false": "Adesso non sei iscritto agli aggiornamenti delle partite in casa della serie A",
     "edit_number": "Qual è il tuo numero di maglia di quest'anno?",
-    "edit_number_end": "Il tuo numero di maglia è stato aggiornato! Adesso sei il #{}"
+    "edit_number_end": "Il tuo numero di maglia è stato aggiornato! Adesso sei il #{}",
+
+    "new_example": "/new 123456 mario rossi MariOne 2000-10-1 si no si\n attivo, avis sub, monza sub",
+    "new_error": "Qualcosa è andato storto:\n\n<code>{}</code>",
+    "new_ok": "{} è stato aggiunto al database",
+
+    "notify_registration": "Ciao, un admin ti ha appena registrato.\nAdesso puoi utilizzare tutte le mie funzionalità con il comando /menu"
 }
