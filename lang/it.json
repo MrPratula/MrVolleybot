@@ -58,5 +58,8 @@
     "new_error": "Qualcosa è andato storto:\n\n<code>{}</code>",
     "new_ok": "{} è stato aggiunto al database",
 
-    "notify_registration": "Ciao, un admin ti ha appena registrato.\nAdesso puoi utilizzare tutte le mie funzionalità con il comando /menu"
+    "notify_registration": "Ciao, un admin ti ha appena registrato.\nAdesso puoi utilizzare tutte le mie funzionalità con il comando /menu",
+
+    "check_bday_true": "\uD83C\uDF89 INFO \uD83C\uDF89\n\nOggi è un giorno speciale, tanti auguri {} per i tuoi {} anni! \uD83C\uDF89 \uD83C\uDF8A \uD83C\uDF7E \uD83E\uDD42",
+    "check_bday_add": "Il caro {} è stato aggiunto alla lista paste! \uD83C\uDF70"
 }

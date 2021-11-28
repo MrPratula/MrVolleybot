@@ -1,3 +1,4 @@
+import datetime
 import logging
 
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
@@ -10,6 +11,7 @@ from bot.workout import workout_c, workout_b, delay_button, absent_button, termi
                         person_delay_button
 from bot.edit import edit_b, edit_bool, edit_number, edit_answer_bool, edit_answer_number
 from bot.new_user import new, my_id
+from bot.day import check_bday
 
 from utils.conversation_handler import register_handler
 
@@ -35,7 +37,7 @@ if __name__ == '__main__':
     dispatcher.add_handler(CommandHandler('late', workout_c))
     dispatcher.add_handler(CommandHandler('new', new))
     dispatcher.add_handler(CommandHandler('id', my_id))
-
+    dispatcher.add_handler(CommandHandler('day', check_bday))
 
     #   BUTTONS
     dispatcher.add_handler(CallbackQueryHandler(paste_show_b, pattern="paste_show"))
@@ -58,11 +60,13 @@ if __name__ == '__main__':
     dispatcher.add_handler(CallbackQueryHandler(edit_number, pattern="edit_number"))
     dispatcher.add_handler(CallbackQueryHandler(edit_answer_number, pattern="edit_set_num_.*$"))
 
-
-
-
     # register
     dispatcher.add_handler(register_handler)
+
+    # JOB QUEUE
+
+    job_queue = updater.job_queue
+    # job_queue.run_daily(check_bday, time=datetime.time(15, 30, 0), context=None)
 
     updater.start_polling()
 
