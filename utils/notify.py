@@ -28,4 +28,4 @@ def notify_registration(user, bot):
 
 def notify_group(message, bot):
 
-    bot.send_message(chat_id=420467735, text=message)
+    bot.send_message(chat_id="", text=message)
