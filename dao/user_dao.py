@@ -25,7 +25,7 @@ def user_exist(user_id):
         return False
 
 
-def get_members_nick():
+def get_actives_nick():
 
     db = connect()
     cursor = db.cursor(prepared=True)
@@ -37,9 +37,10 @@ def get_members_nick():
         cursor.execute(query, (True,))
         result = cursor.fetchall()
 
-    except:
-        print("can not get users nickname")
-        return None
+    except Exception:
+        print("get_actives_nick() had a problem")
+        print(traceback.format_exc())
+        return []
 
     names = []
     for nickname in result:
@@ -143,3 +144,24 @@ def is_admin(user_id):
         return False
 
     return result[0][0]
+
+
+def get_user_id(nickname):
+
+    db = connect()
+    cursor = db.cursor(prepared=True)
+
+    query = "SELECT chat_id FROM users WHERE nickname = %s"
+
+    try:
+        cursor.execute(query, (nickname,))
+        result = cursor.fetchall()
+    except Exception:
+        print("get_user_id() had a problem")
+        print(traceback.format_exc())
+        return 0
+
+    return result[0][0]
+
+
+

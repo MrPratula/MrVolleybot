@@ -1,6 +1,6 @@
 from telegram import InlineKeyboardMarkup
 
-from dao.user_dao import user_exist, get_members_nick
+from dao.user_dao import user_exist, get_actives_nick
 from dao.paste_dao import get_paste_list, add_paste, remove_paste
 
 from utils.lang import text
@@ -53,7 +53,7 @@ def paste_members_b(update, context):
     choice = c_query.data[14:]
 
     if choice == "add":
-        members = get_members_nick()
+        members = get_actives_nick()
         members.append("Annulla  ❌")
         keyboard = array_to_keyboard(members, "paste_add")
         message = text("paste_add_choice")

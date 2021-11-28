@@ -12,6 +12,7 @@ from bot.workout import workout_c, workout_b, delay_button, absent_button, termi
 from bot.edit import edit_b, edit_bool, edit_number, edit_answer_bool, edit_answer_number
 from bot.new_user import new, my_id
 from bot.day import check_bday
+from bot.score import score_edit, score_edit_press, score_view_b, score_view_c
 
 from utils.conversation_handler import register_handler
 
@@ -38,6 +39,8 @@ if __name__ == '__main__':
     dispatcher.add_handler(CommandHandler('new', new))
     dispatcher.add_handler(CommandHandler('id', my_id))
     dispatcher.add_handler(CommandHandler('day', check_bday))
+    dispatcher.add_handler(CommandHandler('score', score_view_c))
+
 
     #   BUTTONS
     dispatcher.add_handler(CallbackQueryHandler(paste_show_b, pattern="paste_show"))
@@ -59,6 +62,10 @@ if __name__ == '__main__':
     dispatcher.add_handler(CallbackQueryHandler(edit_answer_bool, pattern="^edit_ans_.*$"))
     dispatcher.add_handler(CallbackQueryHandler(edit_number, pattern="edit_number"))
     dispatcher.add_handler(CallbackQueryHandler(edit_answer_number, pattern="edit_set_num_.*$"))
+
+    dispatcher.add_handler(CallbackQueryHandler(score_view_b, pattern="score_view"))
+    dispatcher.add_handler(CallbackQueryHandler(score_edit, pattern="score_edit"))
+    dispatcher.add_handler(CallbackQueryHandler(score_edit_press, pattern="score_press_.*$"))
 
     # register
     dispatcher.add_handler(register_handler)

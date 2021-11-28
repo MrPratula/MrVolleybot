@@ -10,6 +10,9 @@ def keyboard_menu():
                 [InlineKeyboardButton("Rimuovi Paste 📤", callback_data="paste_members_remove"),
                  InlineKeyboardButton("Aggiungi Paste 📥", callback_data="paste_members_add")],
 
+                [InlineKeyboardButton("Punti 🥇", callback_data="score_view"),
+                 InlineKeyboardButton("Mod Punti 📝", callback_data="score_edit")],
+
                 [InlineKeyboardButton("Partita 🆚", callback_data="game"),
                  InlineKeyboardButton("Modifica ⚙", callback_data="edit_main")]
                 ]
@@ -106,5 +109,24 @@ def keyboard_numbers():
             keyboard.append([InlineKeyboardButton(f"{n}", callback_data=data)])
         else:
             keyboard[len(keyboard) - 1].append(InlineKeyboardButton(f"{n}", callback_data=data))
+
+    return keyboard
+
+
+def keyboard_scores(people):
+
+    keyboard = []
+
+    for person in people:
+
+        name = person[0]
+        score = person[1]
+        data = f"score_press_[key]_{name}"
+
+        keyboard.append([InlineKeyboardButton("➖", callback_data=data.replace("[key]", "sub1")),
+                         InlineKeyboardButton(f"{name} = {score}", callback_data=data.replace("[key]", "none")),
+                         InlineKeyboardButton("➕", callback_data=data.replace("[key]", "add1"))])
+
+    keyboard.append([InlineKeyboardButton("🟢   FINE   🟢", callback_data="score_press_end")])
 
     return keyboard
