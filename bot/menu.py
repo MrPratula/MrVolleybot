@@ -19,4 +19,4 @@ def menu(update, context):
     reply_markup = InlineKeyboardMarkup(keyboard)
     message = text("menu_init").format(update.message.from_user.first_name)
 
-    update.message.reply_text(message, reply_markup=reply_markup)
+    context.bot.send_message(update.message.chat_id, message, reply_markup=reply_markup)
