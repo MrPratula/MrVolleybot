@@ -1,4 +1,3 @@
-
 import datetime
 import traceback
 
@@ -11,7 +10,6 @@ from utils.lang import text
 
 
 def workout_c(update, context):
-
     if not user_exist(update.message.from_user.id):
         update.message.reply_text("unauthorized")
         return
@@ -25,7 +23,6 @@ def workout_c(update, context):
 
 
 def workout_b(update, context):
-
     query = update.callback_query
     keyboard = keyboard_late()
 
@@ -36,7 +33,6 @@ def workout_b(update, context):
 
 
 def delay_button(update, context):
-
     query = update.callback_query
 
     actives = get_actives_delay()
@@ -48,7 +44,6 @@ def delay_button(update, context):
 
 
 def absent_button(update, context):
-
     query = update.callback_query
 
     actives = get_actives_absence()
@@ -60,14 +55,12 @@ def absent_button(update, context):
 
 
 def terminate_button(update, context):
-
     query = update.callback_query
     message = generate_workout_text()
     query.edit_message_text(message)
 
 
 def person_absent_button(update, context):
-
     query = update.callback_query
     name = query.data[12:]
 
@@ -83,7 +76,6 @@ def person_absent_button(update, context):
 
 
 def person_delay_button(update, context):
-
     query = update.callback_query
     name = query.data[12:]
 
@@ -98,8 +90,18 @@ def person_delay_button(update, context):
     query.edit_message_text(message, reply_markup=reply_markup)
 
 
-def generate_workout_text():
+def show_fines(update, context):
 
+    query = update.callback_query
+    fines = get_all_fines()
+
+    message_fines = "\n".join([" - ".join(x) for x in fines])
+    message = text("workout_fines").format(message_fines)
+
+    query.edit_message_text(message)
+
+
+def generate_workout_text():
     delays = get_actives_delay()
     absences = get_actives_absence()
 
@@ -137,7 +139,6 @@ def generate_workout_text():
 # DAO
 
 def get_actives_delay():
-
     actives = []
 
     db = connect()
@@ -178,7 +179,6 @@ def get_actives_delay():
 
 
 def get_actives_absence():
-
     absences = []
 
     db = connect()
@@ -219,7 +219,6 @@ def get_actives_absence():
 
 
 def add_delay(person_id):
-
     db = connect()
     cursor = db.cursor(prepared=True)
 
@@ -242,7 +241,6 @@ def add_delay(person_id):
 
 
 def add_absent(person_id):
-
     db = connect()
     cursor = db.cursor(prepared=True)
 
@@ -265,7 +263,6 @@ def add_absent(person_id):
 
 
 def how_many():
-
     db = connect()
     cursor = db.cursor(prepared=True)
 
@@ -283,7 +280,6 @@ def how_many():
 
 
 def name_to_id(name):
-
     db = connect()
     cursor = db.cursor(prepared=True)
 
@@ -298,3 +294,25 @@ def name_to_id(name):
         return 0
 
     return int(result[0][0])
+
+
+def get_all_fines():
+    db = connect()
+    cursor = db.cursor(prepared=True)
+
+    query = "SELECT nickname, " \
+            "       SUM(IF(absent = TRUE, 1, 0)) tot_absences, " \
+            "       SUM(IF(delay = TRUE, 1, 0)) tot_delays " \
+            "FROM workouts_2021_2022, users " \
+            "WHERE person = chat_id " \
+            "GROUP BY person"
+
+    try:
+        cursor.execute(query, ())
+        result = cursor.fetchall()
+    except Exception:
+        print("get_all_fines() had a problem")
+        print(traceback.format_exc())
+        return []
+
+    return result

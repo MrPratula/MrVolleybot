@@ -14,7 +14,10 @@ def keyboard_menu():
                  InlineKeyboardButton("Mod Punti 📝", callback_data="score_edit")],
 
                 [InlineKeyboardButton("Partita 🆚", callback_data="game"),
-                 InlineKeyboardButton("Modifica ⚙", callback_data="edit_main")]
+                 InlineKeyboardButton("Modifica ⚙", callback_data="edit_main")],
+
+                [InlineKeyboardButton("Multe 💰", callback_data="workout_fines")]
+
                 ]
 
     return keyboard

@@ -8,7 +8,7 @@ from bot.start import start
 from bot.paste import paste_show_c, paste_show_b, paste_add_c, paste_members_b, paste_add_b, paste_remove_b
 from bot.games import update_avis_games, avis_games
 from bot.workout import workout_c, workout_b, delay_button, absent_button, terminate_button, person_absent_button, \
-                        person_delay_button
+                        person_delay_button, show_fines
 from bot.edit import edit_b, edit_bool, edit_number, edit_answer_bool, edit_answer_number
 from bot.new_user import new, my_id
 from bot.day import check_bday
@@ -56,6 +56,7 @@ if __name__ == '__main__':
     dispatcher.add_handler(CallbackQueryHandler(person_absent_button, pattern="^workout_abs_.*$"))
     dispatcher.add_handler(CallbackQueryHandler(person_delay_button, pattern="^workout_del_.*$"))
     dispatcher.add_handler(CallbackQueryHandler(terminate_button, pattern="workout_end"))
+    dispatcher.add_handler(CallbackQueryHandler(show_fines, pattern="workout_fines"))
 
     dispatcher.add_handler(CallbackQueryHandler(edit_b, pattern="edit_main"))
     dispatcher.add_handler(CallbackQueryHandler(edit_bool, pattern="^edit_bool_.*$"))

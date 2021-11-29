@@ -23,6 +23,7 @@
     "workout_main": "Allenamento del {} ci si allena in {}.",
     "workout_absent": "\n\nAssenti:\n",
     "workout_delay": "\n\nRitardo:\n",
+    "workout_fines": "\uD83D\uDCB8 MULTE \uD83D\uDCB8\nnome - assenze - ritardi\n\n{}",
 
     "register_start": "Stai per iniziare la procedura di registrazione. Ti chiederò un po' di informazioni. Scrivi /cancel per interrompere la procedura.\nPer cominciare, qual è il tuo nome?",
     "register_cancel": "La tua registrazione è stata annullata. Per ricominciare usa /register",
