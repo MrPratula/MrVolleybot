@@ -1,20 +1,22 @@
 import re
-
-import requests
 import datetime
+import requests
 import telegram
 
 from bs4 import BeautifulSoup
 
-from utils.get_from_config import get_avis_link, get_avis_name
-from utils.notify import notify_game_change_avis
+from utils.get_from_config import get_monza_link, get_monza_place
 from utils.lang import text
-from utils.db import connect
 
 
-def avis_games(update, context):
+def monza_games(update, context):
+    games = get_monza_games_website()
 
-    update_avis_games(update, context)
+    for game in games:
+        print(game)
+
+    """
+    update_monza_games(update, context)
     games = get_all_games()
 
     today = datetime.datetime.now()
@@ -34,11 +36,11 @@ def avis_games(update, context):
 
     message = text("game_remaining").format(first_game, other_games)
     update.callback_query.edit_message_text(message, parse_mode=telegram.ParseMode.HTML)
+    """
 
 
-def update_avis_games(update, context):
-
-    games = get_avis_games_federvolley()
+def update_monza_games(update, context):
+    games = get_monza_games_website()
     new_games = []
     for game in games:
         date = game[0][0].split("/")
@@ -86,70 +88,43 @@ def update_avis_games(update, context):
         notify_game_change_avis(message, context.bot)
 
 
-def get_avis_games_federvolley():
-
-    link = get_avis_link()
+def get_monza_games_website():
+    link = get_monza_link()
 
     html_text = requests.get(link).text
 
     soup = BeautifulSoup(html_text, 'html.parser')
 
-    my_team = get_avis_name()
+    my_place = get_monza_place()
     games = []
 
-    for table in soup.find_all("table", class_="GridView"):
-        for row in table.find_all("tr", class_="RowGridView"):
-            if my_team in row.text:
-                columns = row.find_all("td")
-                date = columns[1].find("b").find("span").contents[0::2]
-                opponent = list(filter(lambda e: e != my_team, columns[2].find("b").find("span").contents[0::2]))[0]
-                games.append((date, opponent))
+    for row in soup.find_all("tr"):
+
+        giornata = row.find("td", class_="giornata")
+        data = row.find("td", class_="data")
+        casa = row.find("td", class_="casa")
+        trasferta = row.find("td", class_="trasferta")
+        orario = row.find("td", class_="orario")
+        impianto = row.find("td", class_="impianto")
+        # risultato = row.find("td", class_="risultato")
+
+        try:
+            date = to_date(data.text, orario.text)
+            if impianto.text == my_place and date > datetime.datetime.now():
+                games.append((giornata.text, date, casa.text, trasferta.text))
+        finally:
+            continue
 
     return games
 
 
-#   DAO
+def to_date(date_string, hour_string):
+    date_array = date_string.split("/")
+    hour_array = hour_string.split(":")
 
-
-def insert_game(day, opponent):
-
-    db = connect()
-    cursor = db.cursor(prepared=True)
-
-    query = "INSERT INTO avis_games_2021_2022 (date, opponent) VALUES (%s, %s)"
-
-    try:
-        cursor.execute(query, (day, opponent))
-        db.commit()
-    except:
-        print("can not insert game into db")
-
-
-def del_game(day, opponent):
-
-    db = connect()
-    cursor = db.cursor(prepared=True)
-
-    query = "DELETE FROM avis_games_2021_2022 WHERE date = %s AND opponent = %s"
-
-    try:
-        cursor.execute(query, (day, opponent))
-        db.commit()
-    except:
-        print("can not delete game from db")
-
-
-def get_all_games():
-
-    db = connect()
-    cursor = db.cursor(prepared=True)
-
-    query = "SELECT * FROM avis_games_2021_2022"
-
-    try:
-        cursor.execute(query, ())
-    except:
-        print("can not get all games")
-        return None
-
-    return cursor.fetchall()
+    date = datetime.datetime(year=2000 + int(date_array[2]),
+                             month=int(date_array[1]),
+                             day=int(date_array[0]),
+                             hour=int(hour_array[0]),
+                             minute=int(hour_array[1]))
+    return date

@@ -7,6 +7,7 @@ from bot.menu import menu
 from bot.start import start
 from bot.paste import paste_show_c, paste_show_b, paste_add_c, paste_members_b, paste_add_b, paste_remove_b
 from bot.games_avis import update_avis_games, avis_games
+from bot.games_monza import monza_games
 from bot.workout import workout_c, workout_b, delay_button, absent_button, terminate_button, person_absent_button, \
                         person_delay_button, show_fines
 from bot.edit import edit_b, edit_bool, edit_number, edit_answer_bool, edit_answer_number
@@ -35,6 +36,7 @@ if __name__ == '__main__':
     dispatcher.add_handler(CommandHandler('add', paste_add_c))
     dispatcher.add_handler(CommandHandler('up_avis', update_avis_games))
     dispatcher.add_handler(CommandHandler('game', avis_games))
+    dispatcher.add_handler(CommandHandler('monza', monza_games))
     dispatcher.add_handler(CommandHandler('late', workout_c))
     dispatcher.add_handler(CommandHandler('new', new))
     dispatcher.add_handler(CommandHandler('id', my_id))
