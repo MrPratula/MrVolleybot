@@ -6,7 +6,7 @@ from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
 from bot.menu import menu
 from bot.start import start
 from bot.paste import paste_show_c, paste_show_b, paste_add_c, paste_members_b, paste_add_b, paste_remove_b
-from bot.games import update_avis_games, avis_games
+from bot.games_avis import update_avis_games, avis_games
 from bot.workout import workout_c, workout_b, delay_button, absent_button, terminate_button, person_absent_button, \
                         person_delay_button, show_fines
 from bot.edit import edit_b, edit_bool, edit_number, edit_answer_bool, edit_answer_number

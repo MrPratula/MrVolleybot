@@ -2,14 +2,38 @@ import re
 
 import requests
 import datetime
-
 import telegram
+
 from bs4 import BeautifulSoup
 
 from utils.get_from_config import get_avis_link, get_team_name
-from dao.game_dao import insert_game, del_game, get_all_games
 from utils.notify import notify_game_change_avis
 from utils.lang import text
+from utils.db import connect
+
+
+def avis_games(update, context):
+
+    update_avis_games(update, context)
+    games = get_all_games()
+
+    today = datetime.datetime.now()
+
+    remaining_games = []
+    for game in games:
+        if game[0] >= today:
+            remaining_games.append(game)
+
+    date = remaining_games[0][0].strftime("%a %d-%m-%Y %H:%M")
+    first_game = "{} - {}".format(date, remaining_games[0][1])
+    remaining_games.pop(0)
+    other_games = ""
+    for game in remaining_games:
+        date = game[0].strftime("%a %d-%m-%Y %H:%M")
+        other_games = other_games + "{} - {}\n".format(date, game[1])
+
+    message = text("game_remaining").format(first_game, other_games)
+    update.callback_query.edit_message_text(message, parse_mode=telegram.ParseMode.HTML)
 
 
 def update_avis_games(update, context):
@@ -62,30 +86,6 @@ def update_avis_games(update, context):
         notify_game_change_avis(message, context.bot)
 
 
-def avis_games(update, context):
-
-    update_avis_games(update, context)
-    games = get_all_games()
-
-    today = datetime.datetime.now()
-
-    remaining_games = []
-    for game in games:
-        if game[0] >= today:
-            remaining_games.append(game)
-
-    date = remaining_games[0][0].strftime("%a %d-%m-%Y %H:%M")
-    first_game = "{} - {}".format(date, remaining_games[0][1])
-    remaining_games.pop(0)
-    other_games = ""
-    for game in remaining_games:
-        date = game[0].strftime("%a %d-%m-%Y %H:%M")
-        other_games = other_games + "{} - {}\n".format(date, game[1])
-
-    message = text("game_remaining").format(first_game, other_games)
-    update.callback_query.edit_message_text(message, parse_mode=telegram.ParseMode.HTML)
-
-
 def get_avis_games_federvolley():
 
     link = get_avis_link()
@@ -106,3 +106,50 @@ def get_avis_games_federvolley():
                 games.append((date, opponent))
 
     return games
+
+
+#   DAO
+
+
+def insert_game(day, opponent):
+
+    db = connect()
+    cursor = db.cursor(prepared=True)
+
+    query = "INSERT INTO avis_games_2021_2022 (date, opponent) VALUES (%s, %s)"
+
+    try:
+        cursor.execute(query, (day, opponent))
+        db.commit()
+    except:
+        print("can not insert game into db")
+
+
+def del_game(day, opponent):
+
+    db = connect()
+    cursor = db.cursor(prepared=True)
+
+    query = "DELETE FROM avis_games_2021_2022 WHERE date = %s AND opponent = %s"
+
+    try:
+        cursor.execute(query, (day, opponent))
+        db.commit()
+    except:
+        print("can not delete game from db")
+
+
+def get_all_games():
+
+    db = connect()
+    cursor = db.cursor(prepared=True)
+
+    query = "SELECT * FROM avis_games_2021_2022"
+
+    try:
+        cursor.execute(query, ())
+    except:
+        print("can not get all games")
+        return None
+
+    return cursor.fetchall()
