@@ -1,7 +1,7 @@
 from telegram import InlineKeyboardMarkup
 
 from dao.user_dao import user_exist, get_actives_nick
-from dao.paste_dao import get_paste_list, add_paste, remove_paste
+from utils.db import connect
 
 from utils.lang import text
 from utils.keyboard import array_to_keyboard
@@ -99,3 +99,56 @@ def paste_remove_b(update, context):
         message = text("paste_remove").format(choice.capitalize())
 
     c_query.edit_message_text(message)
+
+
+#   DAO
+
+
+def get_paste_list():
+
+    db = connect()
+    cursor = db.cursor(prepared=True)
+
+    query = "SELECT name FROM paste"
+
+    try:
+
+        cursor.execute(query, ())
+        result = cursor.fetchall()
+
+    except:
+        print("can not get paste list")
+        return None
+
+    paste = []
+    for person in result:
+        paste.append(person[0])
+
+    return paste
+
+
+def add_paste(name):
+
+    db = connect()
+    cursor = db.cursor(prepared=True)
+
+    query = "INSERT INTO paste (name) VALUES (%s)"
+
+    try:
+        cursor.execute(query, (name,))
+        db.commit()
+    except:
+        print("can not add person into paste")
+
+
+def remove_paste(name):
+
+    db = connect()
+    cursor = db.cursor(prepared=True)
+    query = "DELETE FROM paste WHERE name = %s LIMIT 1"
+
+    try:
+        cursor.execute(query, (name,))
+        db.commit()
+    except:
+        print("can not delete person from lista paste")

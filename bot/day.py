@@ -6,7 +6,7 @@ from utils.db import connect
 from utils.lang import text
 from utils.notify import notify_group
 
-from dao.paste_dao import add_paste
+from bot.paste import add_paste
 
 
 def check_bday(update, context):
