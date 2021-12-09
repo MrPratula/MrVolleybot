@@ -46,7 +46,7 @@ def get_monza_games_website():
             if impianto.text == my_place and date > datetime.datetime.now():
                 giornata_u = unicodedata.normalize("NFKD", giornata.text).replace("Â°", "°")
                 games.append((giornata_u, date, casa.text, trasferta.text))
-        finally:
+        except Exception:
             continue
 
     return games
