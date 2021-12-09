@@ -1,7 +1,7 @@
 import re
 import datetime
 import requests
-import telegram
+import unicodedata
 
 from bs4 import BeautifulSoup
 
@@ -10,6 +10,7 @@ from utils.lang import text
 
 
 def monza_games(update, context):
+
     games = get_monza_games_website()
 
     for game in games:
@@ -111,7 +112,8 @@ def get_monza_games_website():
         try:
             date = to_date(data.text, orario.text)
             if impianto.text == my_place and date > datetime.datetime.now():
-                games.append((giornata.text, date, casa.text, trasferta.text))
+                giornata_u = unicodedata.normalize("NFKD", giornata.text).replace("Â°", "°")
+                games.append((giornata_u, date, casa.text, trasferta.text))
         finally:
             continue
 
