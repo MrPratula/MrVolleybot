@@ -30,7 +30,7 @@ def get_actives_nick():
     db = connect()
     cursor = db.cursor(prepared=True)
 
-    query = "SELECT nickname FROM users WHERE active = %s"
+    query = "SELECT nickname FROM users WHERE active = %s ORDER BY nickname"
 
     try:
 
