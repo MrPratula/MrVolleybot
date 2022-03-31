@@ -9,14 +9,20 @@ from utils.lang import text
 
 def menu(update, context):
 
-    if not user_exist(update.message.from_user.id):
-        message = text("unauthorized")
-        update.message.reply_text(message)
-        return
+    try:
 
-    keyboard = keyboard_menu()
+        if not user_exist(update.message.from_user.id):
+            message = text("unauthorized")
+            update.message.reply_text(message)
+            return
 
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    message = text("menu_init").format(update.message.from_user.first_name)
+        keyboard = keyboard_menu()
 
-    context.bot.send_message(update.message.chat_id, message, reply_markup=reply_markup)
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        message = text("menu_init").format(update.message.from_user.first_name)
+
+        context.bot.send_message(update.message.chat_id, message, reply_markup=reply_markup)
+
+    except:
+        message = "Database offline"
+        context.bot.send_message(update.message.chat_id, message)
